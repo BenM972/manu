@@ -559,3 +559,55 @@ ul, ol { padding: 0; list-style: none; }
   .step.is-active p { display: block; }
   .parcours__note { display: none; }
 }
+
+/* Garde-fous responsive */
+html, body { overflow-x: clip; }
+main > section, .footer { overflow-x: clip; }
+.btn { white-space: nowrap; }
+img, video, iframe { max-width: 100%; }
+@media (max-width: 480px) {
+  .hero__content { bottom: 40px; }
+  .hero__ctas { flex-direction: column; gap: 12px; }
+  .hero__ctas .btn { width: 100%; flex: none; }
+  .hero__lead { font-size: 16px; margin-top: 20px; }
+  .hero__title { gap: 8px; }
+  .hero__title .line > span { box-shadow: 0 0 0 4px var(--paper), 0 10px 18px -10px rgba(15,18,72,0.6); }
+  .sticker--hero { width: 96px; height: 96px; top: 84px; right: 12px; border-width: 3px; }
+  .sticker--hero b { font-size: 21px; }
+  .sticker--hero span { font-size: 9px; }
+  .kicker { font-size: 17px; }
+  .title { font-size: clamp(38px, 11vw, 52px); }
+  .manifeste__text { font-size: 27px; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat__num { font-size: 48px; }
+  .stat__label { font-size: 14px; }
+  .offer { --r: 0deg; }
+  .offer--blue, .offer--white { --r: 0deg; }
+  .offer__price { width: 80px; height: 80px; top: -14px; right: -6px; }
+  .offer__price b { font-size: 26px; }
+  .offer .btn { width: calc(100% - 20px); }
+  .carte__extra { margin-top: 40px; }
+  .polaroid--manifeste { max-width: 300px; }
+  .polaroid--small { width: 46%; }
+  .access__title { font-size: 40px; }
+  .access__title span { white-space: normal; }
+  .postcard { width: 280px; }
+  .postcard blockquote { padding-right: 52px; }
+  .booking__amount { font-size: 48px; }
+  .booking__total .btn { width: 100%; }
+  .chip span { font-size: 18px; }
+  .counter > span { font-size: 15px; }
+  .slider__btn { width: 46px; height: 46px; }
+  .footer__word { font-size: 34px; white-space: normal; }
+  .footer__bottom { flex-direction: column; gap: 6px; }
+  .acces__card h3 { font-size: 28px; }
+  .wrap { padding-inline: 18px; }
+}
+@media (max-width: 1080px) and (min-width: 481px) {
+  .offers { grid-template-columns: 1fr 1fr; }
+  .offer--white { grid-column: 1 / -1; max-width: 520px; justify-self: center; }
+}
+@media (max-width: 720px) {
+  .map__stop[data-stop="2"] text { text-anchor: end; transform: translate(-34px, -44px); }
+  .map__islet-name { display: none; }
+}
