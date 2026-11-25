@@ -645,3 +645,30 @@ img, video, iframe { max-width: 100%; }
   .menu__logo { width: 120px; }
   .menu nav a { font-size: 40px; }
 }
+
+/* Parcours mobile : la photo change sous les yeux, collée sur la carte */
+@media (max-width: 720px) {
+  .parcours__map { padding-top: 56px; }
+  .parcours__photos { position: absolute; width: 40%; top: 0; right: -4px; margin: 0; z-index: 2; padding: 6px 6px 8px; }
+  .parcours__photos::before { width: 56px; height: 18px; top: -9px; }
+  .map__stop[data-stop="4"] text { text-anchor: end; transform: translate(-40px, -30px); }
+}
+
+/* Bouton flottant Réserver */
+.book-fab {
+  position: fixed; right: 20px; bottom: 20px; z-index: 40;
+  display: flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 22px 0 18px; border-radius: 28px;
+  background: var(--orange); color: var(--navy);
+  border: 3px solid var(--navy); box-shadow: 3px 3px 0 var(--navy);
+  font-family: var(--display); font-size: 19px; text-transform: uppercase;
+  transform: translateY(calc(100% + 40px));
+  transition: transform 320ms var(--ease), box-shadow 160ms var(--ease);
+}
+.book-fab.is-visible { transform: translateY(0); }
+.book-fab.is-visible:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--navy); }
+.book-fab svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 720px) {
+  .book-fab { right: 16px; bottom: 16px; }
+  .call { left: 16px; bottom: 16px; }
+}

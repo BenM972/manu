@@ -88,6 +88,12 @@
   // Navigation
   const nav = $('[data-nav]');
   const call = $('.call');
+  const bookFab = $('[data-book-fab]');
+  let bookingInView = false;
+  new IntersectionObserver((entries) => {
+    bookingInView = entries[0].isIntersecting;
+    onScroll();
+  }, { threshold: 0.15 }).observe(document.getElementById('reserver'));
   let lastY = 0;
   const onScroll = () => {
     const y = window.scrollY;
@@ -96,6 +102,7 @@
     nav.classList.toggle('is-hidden', y > heroH && y > lastY + 2);
     if (y < lastY - 2) nav.classList.remove('is-hidden');
     call.classList.toggle('is-visible', y > heroH);
+    bookFab.classList.toggle('is-visible', y > heroH && !bookingInView);
     lastY = y;
   };
   window.addEventListener('scroll', onScroll, { passive: true });
