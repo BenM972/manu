@@ -38,20 +38,50 @@
   // Menu mobile
   const burger = $('[data-burger]');
   const menu = $('[data-menu]');
+  const menuLogo = $('[data-menu-logo]');
+  const menuLinks = $$('.menu nav a, .menu__tel');
+  const navLogo = $('.nav__brand img');
+  const animated = () => !reduced && hasGsap;
+  let menuTl = null;
+
+  function openMenu() {
+    menu.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+    burger.setAttribute('aria-expanded', 'true');
+    $('[data-nav]').classList.remove('is-solid');
+    lenis && lenis.stop();
+    if (!animated()) return;
+    menuTl && menuTl.kill();
+    menuTl = gsap.timeline()
+      .to(navLogo, { scale: 0.4, rotate: -30, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
+      .fromTo(menuLogo,
+        { scale: 0.2, rotate: -200, y: -120, opacity: 0 },
+        { scale: 1, rotate: 0, y: 0, opacity: 1, duration: 1, ease: 'back.out(1.6)' }, 0.15)
+      .to(menuLogo, { rotate: -4, duration: 0.25, ease: 'sine.inOut', yoyo: true, repeat: 1 }, '-=0.15')
+      .fromTo(menuLinks,
+        { y: 36, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out', stagger: 0.06 }, 0.45);
+  }
+
   function closeMenu() {
     if (!menu.classList.contains('is-open')) return;
-    menu.classList.remove('is-open');
-    menu.setAttribute('aria-hidden', 'true');
     burger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
     lenis && lenis.start();
+    const done = () => {
+      menu.classList.remove('is-open');
+      $('[data-nav]').classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.85 - 80);
+    };
+    if (!animated()) { done(); return; }
+    menuTl && menuTl.kill();
+    menuTl = gsap.timeline({ onComplete: done })
+      .to(menuLinks, { y: -20, opacity: 0, duration: 0.25, ease: 'power2.in', stagger: 0.03 }, 0)
+      .to(menuLogo, { scale: 0.2, rotate: 220, y: -160, opacity: 0, duration: 0.55, ease: 'back.in(1.4)' }, 0.05)
+      .fromTo(navLogo, { scale: 0.4, rotate: 40, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.7, ease: 'back.out(2)' }, 0.45);
   }
+
   burger.addEventListener('click', () => {
-    const open = !menu.classList.contains('is-open');
-    menu.classList.toggle('is-open', open);
-    menu.setAttribute('aria-hidden', String(!open));
-    burger.setAttribute('aria-expanded', String(open));
-    $('[data-nav]').classList.toggle('is-solid', !open && window.scrollY > 40);
-    open ? lenis && lenis.stop() : lenis && lenis.start();
+    menu.classList.contains('is-open') && burger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 

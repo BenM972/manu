@@ -635,3 +635,13 @@ img, video, iframe { max-width: 100%; }
   .capitaine__photos { padding-bottom: 0; padding-top: 40px; }
   .polaroid--small { top: 0; }
 }
+
+/* Menu mobile : logo animé */
+.menu { align-items: center; text-align: center; justify-content: center; gap: 28px; }
+.menu nav { justify-items: center; }
+.menu__logo { width: min(200px, 48vw); height: auto; filter: drop-shadow(0 14px 20px rgba(15,18,72,0.35)); will-change: transform; }
+.nav__brand img { will-change: transform; }
+@media (max-height: 640px) {
+  .menu__logo { width: 120px; }
+  .menu nav a { font-size: 40px; }
+}
