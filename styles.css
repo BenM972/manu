@@ -611,3 +611,27 @@ img, video, iframe { max-width: 100%; }
   .map__stop[data-stop="2"] text { text-anchor: end; transform: translate(-34px, -44px); }
   .map__islet-name { display: none; }
 }
+
+/* Nav : le logo tient dans la barre */
+.nav__brand { align-self: center; padding-top: 0; display: flex; align-items: center; height: 100%; }
+.nav__brand img { width: auto; height: 72px; }
+.nav.is-solid .nav__brand img { width: auto; height: 60px; }
+.nav.is-hidden { transform: translateY(calc(-100% - 24px)); }
+@media (max-width: 720px) {
+  .nav__brand img, .nav.is-solid .nav__brand img { width: auto; height: 58px; }
+}
+
+/* Sticker du hero : texte dans le cercle */
+.sticker { padding: 18px; }
+.sticker span { font-size: 12px; line-height: 1.1; max-width: 110px; margin-inline: auto; }
+@media (max-width: 480px) {
+  .sticker--hero { padding: 12px; }
+  .sticker--hero span { font-size: 9px; max-width: 70px; }
+}
+
+/* Capitaine : la légende du grand polaroïd reste visible */
+.polaroid--small { top: -24px; bottom: auto; right: -8px; }
+@media (max-width: 720px) {
+  .capitaine__photos { padding-bottom: 0; padding-top: 40px; }
+  .polaroid--small { top: 0; }
+}
