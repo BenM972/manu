@@ -672,3 +672,10 @@ img, video, iframe { max-width: 100%; }
   .book-fab { right: 16px; bottom: 16px; }
   .call { left: 16px; bottom: 16px; }
 }
+
+/* Nav : hauteur fixe, plus de saut au passage en opaque */
+.nav { transition: background-color 280ms var(--ease), color 280ms var(--ease), transform 320ms var(--ease), box-shadow 280ms var(--ease); }
+.nav.is-solid { height: 88px; }
+@media (max-width: 720px) {
+  .nav, .nav.is-solid { height: 72px; }
+}

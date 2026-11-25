@@ -70,7 +70,7 @@
     lenis && lenis.start();
     const done = () => {
       menu.classList.remove('is-open');
-      $('[data-nav]').classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.85 - 80);
+      $('[data-nav]').classList.toggle('is-solid', window.scrollY > 24);
     };
     if (!animated()) { done(); return; }
     menuTl && menuTl.kill();
@@ -98,9 +98,7 @@
   const onScroll = () => {
     const y = window.scrollY;
     const heroH = window.innerHeight * 0.85;
-    if (!menu.classList.contains('is-open')) nav.classList.toggle('is-solid', y > heroH - 80);
-    nav.classList.toggle('is-hidden', y > heroH && y > lastY + 2);
-    if (y < lastY - 2) nav.classList.remove('is-hidden');
+    if (!menu.classList.contains('is-open')) nav.classList.toggle('is-solid', y > 24);
     call.classList.toggle('is-visible', y > heroH);
     bookFab.classList.toggle('is-visible', y > heroH && !bookingInView);
     lastY = y;
