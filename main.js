@@ -236,12 +236,27 @@
   });
 
   // Cartes des excursions
-  gsap.from('.offer', {
-    y: 120, rotate: (i) => [-12, 10, -8][i] || 0, opacity: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.14,
-    scrollTrigger: { trigger: '[data-offers]', start: 'top 82%' },
-    clearProps: 'transform',
+  const mmOffers = gsap.matchMedia();
+  mmOffers.add('(min-width: 721px)', () => {
+    gsap.from('.offer', {
+      y: 120, rotate: (i) => [-12, 10, -8][i] || 0, opacity: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.14,
+      scrollTrigger: { trigger: '[data-offers]', start: 'top 82%' },
+      clearProps: 'transform',
+    });
+    gsap.from('.offer__price', { scale: 0, rotate: -90, duration: 0.8, ease: 'back.out(2.2)', stagger: 0.14, delay: 0.5, scrollTrigger: { trigger: '[data-offers]', start: 'top 82%' } });
   });
-  gsap.from('.offer__price', { scale: 0, rotate: -90, duration: 0.8, ease: 'back.out(2.2)', stagger: 0.14, delay: 0.5, scrollTrigger: { trigger: '[data-offers]', start: 'top 82%' } });
+  mmOffers.add('(max-width: 720px)', () => {
+    $$('.offer').forEach((card) => {
+      gsap.from(card, {
+        y: 40, opacity: 0, duration: 0.9, ease: 'power2.out', clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: card, start: 'top 90%' },
+      });
+      gsap.from($('.offer__price', card), {
+        scale: 0.6, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.35, clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: card, start: 'top 90%' },
+      });
+    });
+  });
   gsap.from('.carte__extra', { scale: 0.6, rotate: -14, opacity: 0, duration: 0.8, ease: 'back.out(2)', scrollTrigger: { trigger: '.carte__extra', start: 'top 92%' } });
 
   const mm = gsap.matchMedia();
@@ -304,10 +319,12 @@
   });
   mm.add('(max-width: 1080px)', () => {
     ScrollTrigger.create({
-      trigger: '.map',
-      start: 'top 75%',
-      end: 'bottom 25%',
-      scrub: 0.8,
+      trigger: '.parcours__map',
+      start: () => 'top ' + (nav.offsetHeight + 12) + 'px',
+      end: '+=220%',
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
       onUpdate: (self) => drawRoute(self.progress),
     });
   });

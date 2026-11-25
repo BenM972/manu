@@ -679,3 +679,14 @@ img, video, iframe { max-width: 100%; }
 @media (max-width: 720px) {
   .nav, .nav.is-solid { height: 72px; }
 }
+
+/* Parcours mobile et tablette : planning lisible, photos en fondu lent */
+@media (max-width: 1080px) {
+  .step { opacity: 1; }
+  .step.is-active h3 { color: var(--turquoise); }
+  .parcours__frame img { clip-path: none; opacity: 0; transform: scale(1.08); transition: opacity 1100ms var(--ease), transform 1600ms var(--ease); }
+  .parcours__frame img.is-active { clip-path: none; opacity: 1; transform: scale(1); }
+}
+@media (max-width: 720px) {
+  .offer { transition: none; }
+}
