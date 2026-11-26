@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Les Balades de Manu · Excursions en bateau aux îlets du Robert et du François</title>
-  <meta name="description" content="Sorties en bateau à la journée depuis le ponton du Robert : fonds blancs, Baignoire de Joséphine, iguanes, planteur et déjeuner créole. 12 passagers maximum, accessible aux fauteuils roulants.">
+  <meta name="description" content="Excursions en bateau à la journée depuis le ponton du Robert : îlet Chancel, Baignoire de Joséphine, Trapèze, planteur et déjeuner créole. 12 passagers maximum, accessible aux fauteuils roulants.">
   <meta name="theme-color" content="#1b1d63">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="Les Balades de Manu">
-  <meta property="og:title" content="Les Balades de Manu · Embarque avec Manu">
+  <meta property="og:title" content="Les Balades de Manu · Excursions en bateau en Martinique">
   <meta property="og:description" content="Une journée en bateau entre les îlets du Robert et du François : îlet Chancel, Baignoire de Joséphine, Trapèze, planteur et déjeuner créole.">
   <meta property="og:image" content="https://bmconsultingfwi.fr/demo/lesbaladesdemanu/assets/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -17,29 +17,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
 <div class="loader" aria-hidden="true">
   <img src="assets/logo.webp" alt="" class="loader__logo">
-  <div class="roots"><i></i><i></i><i></i></div>
 </div>
 
 <header class="nav" data-nav>
   <a href="#top" class="nav__brand" aria-label="Les Balades de Manu, accueil">
-    <img src="assets/logo-sm.webp" alt="" width="64" height="76">
+    <img src="assets/logo-sm.webp" alt="" width="60" height="72">
   </a>
   <nav class="nav__links" aria-label="Navigation principale">
     <a href="#excursions">Excursions</a>
-    <a href="#parcours">Le parcours</a>
-    <a href="#capitaine">Manu</a>
+    <a href="#parcours">Programme</a>
+    <a href="#capitaine">Le capitaine</a>
     <a href="#accessibilite">Accessibilité</a>
     <a href="#avis">Avis</a>
   </nav>
   <div class="nav__actions">
-    <a href="tel:+596696079132" class="nav__tel">0696 07 91 32</a>
-    <a href="#reserver" class="btn btn--sun btn--sm">Réserver</a>
+    <a href="tel:+596696079132" class="nav__tel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+      0696 07 91 32
+    </a>
+    <a href="#reserver" class="btn btn--primary btn--sm">Réserver</a>
     <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false" data-burger>
       <span></span><span></span>
     </button>
@@ -50,8 +52,8 @@
   <img src="assets/logo.webp" alt="" class="menu__logo" width="220" height="262" data-menu-logo>
   <nav aria-label="Menu mobile">
     <a href="#excursions">Excursions</a>
-    <a href="#parcours">Le parcours</a>
-    <a href="#capitaine">Manu</a>
+    <a href="#parcours">Programme</a>
+    <a href="#capitaine">Le capitaine</a>
     <a href="#accessibilite">Accessibilité</a>
     <a href="#avis">Avis</a>
     <a href="#reserver">Réserver</a>
@@ -68,138 +70,136 @@
       </video>
       <div class="hero__scrim"></div>
     </div>
-
-    <div class="hero__content">
-      <p class="hero__kicker" data-reveal-up>Ponton du Robert · Martinique</p>
-      <h1 class="hero__title" data-split>
-        <span class="line">Embarque</span>
-        <span class="line">avec Manu</span>
-      </h1>
-      <p class="hero__lead" data-reveal-up>Une journée sur l'eau entre les îlets du Robert et du François. Fonds blancs, Baignoire de Joséphine, iguanes, planteur et accras les pieds dans l'eau.</p>
-      <div class="hero__ctas" data-reveal-up>
-        <a href="#reserver" class="btn btn--sun">Réserver ma sortie</a>
-        <a href="#excursions" class="btn btn--sand">Voir les sorties</a>
+    <div class="wrap hero__content">
+      <p class="hero__eyebrow" data-hero-in>Excursions en bateau · Le Robert, Martinique</p>
+      <h1 class="hero__title" data-hero-in>Une journée en mer<br><span>avec Manu</span></h1>
+      <p class="hero__lead" data-hero-in>Îlet Chancel et ses iguanes, Baignoire de Joséphine, fonds blancs de Trapèze et déjeuner créole aux îlets du François. En petit groupe, à bord de Topaze.</p>
+      <div class="hero__ctas" data-hero-in>
+        <a href="#reserver" class="btn btn--primary">Réserver ma sortie</a>
+        <a href="#excursions" class="btn btn--light">Voir les excursions</a>
       </div>
-    </div>
-
-    <div class="sticker sticker--hero" data-sticker aria-hidden="true">
-      <span>12 passagers maximum</span>
-      <b>Petit<br>comité</b>
+      <ul class="hero__chips" data-hero-in>
+        <li>12 passagers maximum</li>
+        <li>Accessible en fauteuil roulant</li>
+        <li>Départ du ponton du Robert</li>
+      </ul>
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track" data-ticker>
-      <span>Planteur</span><i></i><span>Ti-punch</span><i></i><span>Accras</span><i></i><span>Fonds blancs</span><i></i><span>Iguanes</span><i></i><span>Baignoire de Joséphine</span><i></i><span>Snorkeling</span><i></i><span>Repas créole</span><i></i>
-      <span>Planteur</span><i></i><span>Ti-punch</span><i></i><span>Accras</span><i></i><span>Fonds blancs</span><i></i><span>Iguanes</span><i></i><span>Baignoire de Joséphine</span><i></i><span>Snorkeling</span><i></i><span>Repas créole</span><i></i>
+  <section class="facts" aria-label="En chiffres">
+    <div class="wrap facts__grid">
+      <div class="fact"><span class="fact__num"><b data-count="15">15</b> ans</span><span class="fact__label">de sauvetage en mer</span></div>
+      <div class="fact"><span class="fact__num"><b data-count="12">12</b></span><span class="fact__label">passagers maximum par sortie</span></div>
+      <div class="fact"><span class="fact__num"><b data-count="4">4</b></span><span class="fact__label">places pour fauteuils roulants</span></div>
+      <div class="fact"><span class="fact__num"><b data-count="7">7</b>j/7</span><span class="fact__label">de 9 h à 16 h</span></div>
     </div>
-  </div>
+  </section>
 
-  <section class="manifeste" id="manifeste">
-    <div class="wrap manifeste__grid">
-      <div>
-        <p class="kicker">Le mot du capitaine</p>
-        <p class="manifeste__text" data-words>
-          Bonjour, moi c'est Manu. Je t'emmène découvrir les îlets du François et du Robert, leur histoire, leurs iguanes et leurs fonds blancs. Pas de foule, pas de course : du temps pour se baigner, un planteur les pieds dans l'eau, et la Martinique comme je l'aime.
-        </p>
-        <p class="manifeste__sign">Manu, ton capitaine</p>
+  <section class="intro" id="manifeste">
+    <div class="wrap intro__grid">
+      <div class="intro__copy">
+        <p class="label">Le mot du capitaine</p>
+        <p class="intro__text" data-words>Bonjour, moi c'est Manu. Je vous emmène découvrir les îlets du Robert et du François, leur histoire, leurs iguanes et leurs fonds blancs. Pas de foule, pas de course : du temps pour se baigner, un planteur les pieds dans l'eau, et la Martinique comme je l'aime.</p>
+        <p class="intro__sign">Manu, votre capitaine</p>
       </div>
-      <figure class="polaroid polaroid--manifeste" data-polaroid>
+      <figure class="photo intro__photo" data-reveal>
         <img src="assets/manu-bar.webp" alt="Manu au bar flottant avec des passagers sur les fonds blancs" loading="lazy">
-        <figcaption>L'apéro aux fonds blancs</figcaption>
       </figure>
     </div>
-    <div class="wrap">
-      <div class="stats">
-        <div class="stat"><span class="stat__num" data-count="15">0</span><span class="stat__label">ans de sauvetage en mer</span></div>
-        <div class="stat"><span class="stat__num" data-count="12">0</span><span class="stat__label">passagers maximum</span></div>
-        <div class="stat"><span class="stat__num" data-count="4">0</span><span class="stat__label">places fauteuil roulant</span></div>
-        <div class="stat"><span class="stat__num" data-count="7">0</span><span class="stat__label">jours sur 7, de 9 h à 16 h</span></div>
-      </div>
-    </div>
   </section>
 
-  <div class="wave wave--to-green" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 C 120 60, 240 0, 360 30 S 600 60, 720 30 S 960 0, 1080 30 S 1320 60, 1440 30 V60 H0 Z"/></svg></div>
-
-  <section class="carte" id="excursions">
+  <section class="excursions" id="excursions">
     <div class="wrap">
-      <div class="carte__head">
-        <p class="kicker">Nos excursions</p>
-        <h2 class="title title--yellow">Choisis ta sortie</h2>
-        <p class="carte__sub">Toutes les sorties passent par l'îlet Chancel, la Baignoire de Joséphine et les fonds blancs. Planteur, ti-punch, boissons sans alcool et accras compris.</p>
+      <div class="section-head" data-reveal>
+        <p class="label">Nos excursions</p>
+        <h2 class="title">Choisissez votre sortie</h2>
+        <p class="lead">Toutes les excursions passent par l'îlet Chancel, la Baignoire de Joséphine et les fonds blancs. Planteur, ti-punch, boissons sans alcool et accras compris.</p>
       </div>
 
       <div class="offers" data-offers>
-        <article class="offer offer--yellow">
-          <div class="offer__photo"><img src="assets/bar-flottant.webp" alt="Passagers autour du bar flottant sur les fonds blancs" loading="lazy"></div>
-          <div class="offer__price"><b>85 €</b><span>par pers.</span></div>
-          <p class="offer__tag">La plus demandée</p>
-          <h3 class="offer__title">La journée avec déjeuner</h3>
-          <p class="offer__time">9 h → 16 h · tous les jours</p>
-          <ul class="offer__list">
-            <li>Îlet Chancel et ses iguanes</li>
-            <li>Baignoire de Joséphine et Trapèze</li>
-            <li>Snorkeling, planteur et accras</li>
-            <li>Repas créole, dessert et café</li>
-          </ul>
-          <p class="offer__note">Moins de 6 ans : 40 €</p>
-          <a href="#reserver" class="btn btn--sand" data-pick="journee-dej">Je réserve celle-là</a>
+        <article class="offer offer--featured" data-reveal>
+          <div class="offer__photo">
+            <img src="assets/bar-flottant.webp" alt="Passagers autour du bar flottant sur les fonds blancs" loading="lazy">
+            <span class="offer__badge">La plus demandée</span>
+          </div>
+          <div class="offer__body">
+            <h3 class="offer__title">Journée avec déjeuner</h3>
+            <p class="offer__time">9 h – 16 h · tous les jours</p>
+            <ul class="offer__list">
+              <li>Îlet Chancel et ses iguanes</li>
+              <li>Baignoire de Joséphine et Trapèze</li>
+              <li>Snorkeling, planteur et accras</li>
+              <li>Repas créole, dessert et café</li>
+            </ul>
+            <div class="offer__foot">
+              <p class="offer__price"><b>85 €</b><span>par personne<br>40 € pour les moins de 6 ans</span></p>
+              <a href="#reserver" class="btn btn--primary" data-pick="journee-dej">Réserver</a>
+            </div>
+          </div>
         </article>
 
-        <article class="offer offer--blue">
-          <div class="offer__photo"><img src="assets/groupe-baignade.webp" alt="Groupe de passagers qui saluent dans le lagon" loading="lazy"></div>
-          <div class="offer__price"><b>70 €</b><span>par pers.</span></div>
-          <p class="offer__tag">Pique-nique libre</p>
-          <h3 class="offer__title">La journée sans déjeuner</h3>
-          <p class="offer__time">9 h → 16 h · tous les jours</p>
-          <ul class="offer__list">
-            <li>Le même programme toute la journée</li>
-            <li>Tu amènes ton repas</li>
-            <li>Planteur et accras le matin</li>
-            <li>Goûter offert l'après-midi</li>
-          </ul>
-          <a href="#reserver" class="btn btn--sand" data-pick="journee">Je réserve celle-là</a>
+        <article class="offer" data-reveal>
+          <div class="offer__photo">
+            <img src="assets/groupe-baignade.webp" alt="Groupe de passagers qui saluent dans le lagon" loading="lazy">
+          </div>
+          <div class="offer__body">
+            <h3 class="offer__title">Journée sans déjeuner</h3>
+            <p class="offer__time">9 h – 16 h · tous les jours</p>
+            <ul class="offer__list">
+              <li>Le même programme toute la journée</li>
+              <li>Repas libre, à prévoir</li>
+              <li>Planteur et accras le matin</li>
+              <li>Goûter offert l'après-midi</li>
+            </ul>
+            <div class="offer__foot">
+              <p class="offer__price"><b>70 €</b><span>par personne</span></p>
+              <a href="#reserver" class="btn btn--outline" data-pick="journee">Réserver</a>
+            </div>
+          </div>
         </article>
 
-        <article class="offer offer--white">
-          <div class="offer__photo"><img src="assets/topaze-lagon.webp" alt="Topaze sur l'eau calme" loading="lazy"></div>
-          <div class="offer__price"><b>60 €</b><span>par pers.</span></div>
-          <p class="offer__tag">Matin ou aprèm</p>
-          <h3 class="offer__title">La demi-journée</h3>
-          <p class="offer__time">9 h → 13 h · 13 h → 16 h</p>
-          <ul class="offer__list">
-            <li>Îlet Chancel et ses iguanes</li>
-            <li>Baignoire de Joséphine</li>
-            <li>Un arrêt snorkeling</li>
-            <li>Accras le matin, goûter l'aprèm</li>
-          </ul>
-          <a href="#reserver" class="btn btn--sun" data-pick="demi">Je réserve celle-là</a>
+        <article class="offer" data-reveal>
+          <div class="offer__photo">
+            <img src="assets/topaze-lagon.webp" alt="Topaze sur l'eau calme" loading="lazy">
+          </div>
+          <div class="offer__body">
+            <h3 class="offer__title">Demi-journée</h3>
+            <p class="offer__time">Matin 9 h – 13 h · après-midi 13 h – 16 h</p>
+            <ul class="offer__list">
+              <li>Îlet Chancel et ses iguanes</li>
+              <li>Baignoire de Joséphine</li>
+              <li>Un arrêt snorkeling</li>
+              <li>Accras le matin, goûter l'après-midi</li>
+            </ul>
+            <div class="offer__foot">
+              <p class="offer__price"><b>60 €</b><span>par personne</span></p>
+              <a href="#reserver" class="btn btn--outline" data-pick="demi">Réserver</a>
+            </div>
+          </div>
         </article>
       </div>
 
-      <div class="carte__extra">
-        <p class="carte__extra-title">À prévoir dans ton sac</p>
-        <p>Masque, tuba, serviette et crème solaire. Le reste, Manu s'en occupe.</p>
-      </div>
+      <p class="note" data-reveal>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        À prévoir : masque, tuba, serviette et crème solaire.
+      </p>
     </div>
   </section>
-
-  <div class="wave wave--from-green" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 C 120 60, 240 0, 360 30 S 600 60, 720 30 S 960 0, 1080 30 S 1320 60, 1440 30 V0 H0 Z"/></svg></div>
 
   <section class="parcours" id="parcours" data-parcours>
     <div class="parcours__inner">
       <div class="parcours__copy">
-        <p class="kicker">Le parcours</p>
-        <h2 class="title">Le programme de la journée</h2>
+        <p class="label">Le programme</p>
+        <h2 class="title">Le déroulé de la journée</h2>
         <ol class="steps">
-          <li class="step is-active" data-step="0"><span class="step__time">9 h</span><div><h3>Départ du ponton du Robert</h3><p>Accueil à bord de Topaze, présentation de la journée</p></div></li>
+          <li class="step is-active" data-step="0"><span class="step__time">9 h</span><div><h3>Départ du ponton du Robert</h3><p>Accueil à bord de Topaze et présentation de la journée</p></div></li>
           <li class="step" data-step="1"><span class="step__time">Matin</span><div><h3>Îlet Chancel et ses iguanes</h3><p>Les iguanes, espèce protégée, dans leur milieu naturel</p></div></li>
           <li class="step" data-step="2"><span class="step__time">Matin</span><div><h3>Baignoire de Joséphine</h3><p>Traversée vers les îlets Oscar et Thierry, baignade, planteur et accras</p></div></li>
           <li class="step" data-step="3"><span class="step__time">Midi</span><div><h3>Déjeuner aux îlets du François</h3><p>Repas créole, dessert et café face à la mer</p></div></li>
-          <li class="step" data-step="4"><span class="step__time">Aprèm</span><div><h3>Baignade à Trapèze</h3><p>Le fond blanc de l'îlet Chancel, eau turquoise jusqu'à la taille, goûter offert</p></div></li>
-          <li class="step" data-step="5"><span class="step__time">16 h</span><div><h3>Retour au ponton</h3><p>Cap sur le Robert, les souvenirs plein la tête</p></div></li>
+          <li class="step" data-step="4"><span class="step__time">Après-midi</span><div><h3>Baignade à Trapèze</h3><p>Le fond blanc de l'îlet Chancel, goûter offert</p></div></li>
+          <li class="step" data-step="5"><span class="step__time">16 h</span><div><h3>Retour au ponton</h3><p>Cap sur le Robert en fin d'après-midi</p></div></li>
         </ol>
-        <p class="parcours__note">Parcours indicatif, selon la mer et le vent du jour</p>
+        <p class="parcours__note">Programme indicatif, adapté chaque jour à la mer et au vent</p>
       </div>
 
       <div class="parcours__map">
@@ -217,28 +217,23 @@
           <text class="map__islet-name" x="536" y="500" text-anchor="middle">Îlet Oscar</text>
           <text class="map__town" x="36" y="160">Le Robert</text>
           <text class="map__town" x="36" y="500">Le François</text>
-
           <path class="map__route-bg" d="M300 152 C 326 128, 350 106, 384 112 C 540 96, 596 214, 566 300 C 556 350, 584 410, 562 440 C 540 470, 506 506, 470 528 C 420 532, 396 410, 414 316 C 424 260, 440 210, 452 182 C 420 156, 356 176, 300 152"/>
           <path class="map__route" data-route d="M300 152 C 326 128, 350 106, 384 112 C 540 96, 596 214, 566 300 C 556 350, 584 410, 562 440 C 540 470, 506 506, 470 528 C 420 532, 396 410, 414 316 C 424 260, 440 210, 452 182 C 420 156, 356 176, 300 152"/>
-
-          <g class="map__stop is-active" data-stop="0" transform="translate(300 152)"><circle r="10"/><text x="-16" y="-16" text-anchor="end">Ponton</text></g>
-          <g class="map__stop" data-stop="1" transform="translate(384 112)"><circle r="10"/><text x="0" y="-22" text-anchor="middle">Îlet Chancel</text></g>
-          <g class="map__stop" data-stop="2" transform="translate(562 440)"><circle r="10"/><text x="18" y="30">Baignoire de Joséphine</text></g>
-          <g class="map__stop" data-stop="3" transform="translate(470 528)"><circle r="10"/><text x="-18" y="6" text-anchor="end">Déjeuner</text></g>
-          <g class="map__stop" data-stop="4" transform="translate(452 182)"><circle r="10"/><text x="20" y="28">Trapèze</text></g>
-
-          <g class="map__boat" data-boat><path d="M-14 -7 H10 L16 0 L10 7 H-14 Z"/></g>
+          <g class="map__stop is-active" data-stop="0" transform="translate(300 152)"><circle r="9"/><text x="-16" y="-14" text-anchor="end">Ponton</text></g>
+          <g class="map__stop" data-stop="1" transform="translate(384 112)"><circle r="9"/><text x="0" y="-20" text-anchor="middle">Îlet Chancel</text></g>
+          <g class="map__stop" data-stop="2" transform="translate(562 440)"><circle r="9"/><text x="18" y="30">Baignoire de Joséphine</text></g>
+          <g class="map__stop" data-stop="3" transform="translate(470 528)"><circle r="9"/><text x="-18" y="6" text-anchor="end">Déjeuner</text></g>
+          <g class="map__stop" data-stop="4" transform="translate(452 182)"><circle r="9"/><text x="20" y="28">Trapèze</text></g>
+          <g class="map__boat" data-boat><path d="M-13 -6 H9 L15 0 L9 6 H-13 Z"/></g>
         </svg>
 
-        <div class="parcours__photos polaroid" data-photos>
-          <div class="parcours__frame">
-            <img src="assets/poste-pilotage.webp" alt="Poste de pilotage de Topaze au ponton" class="is-active" loading="lazy">
-            <img src="assets/iguane.webp" alt="Iguane sur une branche à l'îlet Chancel" loading="lazy">
-            <img src="assets/manu-bar.webp" alt="Baignade et bar flottant à la Baignoire de Joséphine" loading="lazy">
-            <img src="assets/apero-accras.webp" alt="Accras et ti-punch servis à bord" loading="lazy">
-            <img src="assets/manu-5.webp" alt="Passagers dans l'eau claire du fond blanc" loading="lazy">
-            <img src="assets/topaze-lagon.webp" alt="Topaze sur le chemin du retour" loading="lazy">
-          </div>
+        <div class="parcours__photos" data-photos>
+          <img src="assets/poste-pilotage.webp" alt="Poste de pilotage de Topaze au ponton" class="is-active" loading="lazy">
+          <img src="assets/iguane.webp" alt="Iguane sur une branche à l'îlet Chancel" loading="lazy">
+          <img src="assets/manu-bar.webp" alt="Baignade et bar flottant à la Baignoire de Joséphine" loading="lazy">
+          <img src="assets/apero-accras.webp" alt="Accras et ti-punch servis à bord" loading="lazy">
+          <img src="assets/manu-5.webp" alt="Passagers dans l'eau claire du fond blanc" loading="lazy">
+          <img src="assets/topaze-lagon.webp" alt="Topaze sur le chemin du retour" loading="lazy">
         </div>
       </div>
     </div>
@@ -246,115 +241,107 @@
 
   <section class="capitaine" id="capitaine">
     <div class="wrap capitaine__grid">
-      <div class="capitaine__photos">
-        <figure class="polaroid polaroid--big" data-polaroid>
-          <img src="assets/manu-barre.webp" alt="Manu à bord de Topaze" loading="lazy">
-          <figcaption>Manu à bord de Topaze</figcaption>
-        </figure>
-        <figure class="polaroid polaroid--small" data-polaroid>
-          <img src="assets/iguane-close.webp" alt="Iguane en gros plan sur l'îlet Chancel" loading="lazy">
-          <figcaption>Les voisins de l'îlet</figcaption>
-        </figure>
+      <div class="capitaine__photos" data-reveal>
+        <figure class="photo photo--main"><img src="assets/manu-barre.webp" alt="Manu à bord de Topaze" loading="lazy"></figure>
+        <figure class="photo photo--inset"><img src="assets/iguane-close.webp" alt="Iguane en gros plan sur l'îlet Chancel" loading="lazy"></figure>
       </div>
-      <div class="capitaine__copy">
-        <p class="kicker">Ton capitaine</p>
+      <div class="capitaine__copy" data-reveal>
+        <p class="label">Votre capitaine</p>
         <h2 class="title">Manu, un homme de la mer</h2>
         <p class="body">Ancien éducateur sportif spécialisé et triathlète, Manu a grandi sur ces eaux et en a fait son métier. Quinze ans de sauvetage en mer plus tard, la sécurité reste sa première règle à bord.</p>
-        <p class="body">Il connaît les îlets, leur histoire, leur faune, et les petits coins où l'on se baigne sans croiser d'autres bateaux.</p>
-        <p class="slogan">Découverte, détente, authenticité</p>
+        <p class="body">Il connaît les îlets, leur histoire, leur faune, et les coins où l'on se baigne loin des autres bateaux.</p>
+        <blockquote class="quote">Découverte, détente, authenticité</blockquote>
       </div>
     </div>
   </section>
 
   <section class="access" id="accessibilite">
     <div class="wrap access__grid-main">
-      <div class="access__copy">
-        <p class="kicker">Accessibilité</p>
-        <h2 class="access__title">La mer, <span>sans exception</span></h2>
-        <p class="body">Topaze est aménagé pour accueillir les personnes en situation de handicap moteur ou mental, en toute sécurité. Une démarche rare en Martinique, qui tient à cœur à Manu.</p>
-        <figure class="polaroid polaroid--access" data-polaroid>
-          <img src="assets/topaze-lagon.webp" alt="Topaze, le bateau de Manu, sur l'eau calme" loading="lazy">
-          <figcaption>Topaze au mouillage</figcaption>
-        </figure>
+      <div class="access__copy" data-reveal>
+        <p class="label label--light">Accessibilité</p>
+        <h2 class="title title--light">La mer, <span>sans exception</span></h2>
+        <p class="body body--light">Topaze est aménagé pour accueillir les personnes en situation de handicap moteur ou mental, en toute sécurité. Une démarche encore rare en Martinique.</p>
+        <a href="tel:+596696079132" class="btn btn--primary">Parler de mes besoins avec Manu</a>
       </div>
-      <div class="access__side">
-        <div class="access__grid">
-          <div class="access__item">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M12 6v7h5l2 5"/><path d="M8.5 10.5a6 6 0 1 0 7.5 8"/></svg>
+      <div class="access__grid">
+        <div class="access__item" data-reveal>
+          <span class="access__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M12 6v7h5l2 5"/><path d="M8.5 10.5a6 6 0 1 0 7.5 8"/></svg></span>
           <h3>Jusqu'à 4 fauteuils</h3><p>Embarquement adapté et place à bord</p>
         </div>
-          <div class="access__item">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <div class="access__item" data-reveal>
+          <span class="access__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
           <h3>Déficience visuelle</h3><p>Accompagnement et description du parcours</p>
         </div>
-          <div class="access__item">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5a6 6 0 1 1 12 0c0 6-6 6-6 10a3 3 0 0 1-6 0"/><path d="M15 8.5a3 3 0 1 0-6 0"/></svg>
+        <div class="access__item" data-reveal>
+          <span class="access__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5a6 6 0 1 1 12 0c0 6-6 6-6 10a3 3 0 0 1-6 0"/><path d="M15 8.5a3 3 0 1 0-6 0"/></svg></span>
           <h3>Déficience auditive</h3><p>Consignes visuelles et écrites à bord</p>
         </div>
-          <div class="access__item">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg>
+        <div class="access__item" data-reveal>
+          <span class="access__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg></span>
           <h3>Handicap mental</h3><p>Rythme adapté, équipe attentive</p>
         </div>
-        </div>
-        <a href="tel:+596696079132" class="btn btn--sun">Parler de mes besoins avec Manu</a>
       </div>
     </div>
   </section>
 
   <section class="galerie" aria-label="Photos des sorties">
-    <div class="wrap galerie__head">
-      <p class="kicker">Le carnet de bord</p>
-      <h2 class="title">Les vraies photos des vraies sorties</h2>
+    <div class="wrap section-head" data-reveal>
+      <p class="label">En images</p>
+      <h2 class="title">Les sorties en photos</h2>
     </div>
     <div class="slider" data-slider>
-      <div class="slider__track galerie__strip" data-track tabindex="0" aria-label="Photos, faire défiler horizontalement">
-      <figure class="polaroid"><img src="assets/groupe-baignade.webp" alt="Groupe de passagers qui saluent dans le lagon" loading="lazy"><figcaption>Tout le monde à l'eau</figcaption></figure>
-      <figure class="polaroid"><img src="assets/proue-ilet.webp" alt="La proue jaune de Topaze face à un îlet" loading="lazy"><figcaption>Cap sur les îlets</figcaption></figure>
-      <figure class="polaroid"><img src="assets/bar-flottant.webp" alt="Passagers autour du bar flottant" loading="lazy"><figcaption>Le bar flottant</figcaption></figure>
-      <figure class="polaroid"><img src="assets/iguane.webp" alt="Iguane sur une branche" loading="lazy"><figcaption>Îlet Chancel</figcaption></figure>
-      <figure class="polaroid"><img src="assets/hero-topaze.webp" alt="Topaze au mouillage sur l'eau turquoise" loading="lazy"><figcaption>Topaze</figcaption></figure>
-      <figure class="polaroid"><img src="assets/mangrove.webp" alt="La mangrove vue depuis l'eau" loading="lazy"><figcaption>La mangrove</figcaption></figure>
-      <figure class="polaroid"><img src="assets/manu-5.webp" alt="Sortie avec Manu" loading="lazy"><figcaption>Sur les fonds blancs</figcaption></figure>
-      <figure class="polaroid"><img src="assets/topaze-lagon.webp" alt="Topaze sur l'eau calme" loading="lazy"><figcaption>Au mouillage</figcaption></figure>
-    </div>
-      <div class="wrap"><div class="slider__controls">
-        <button type="button" class="slider__btn" data-prev aria-label="Photo précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <div class="slider__progress" aria-hidden="true"><i data-progress></i></div>
-        <button type="button" class="slider__btn" data-next aria-label="Photo suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-      </div></div>
+      <div class="slider__track galerie__track" data-track tabindex="0" aria-label="Photos, faire défiler horizontalement">
+        <figure class="shot"><img src="assets/groupe-baignade.webp" alt="Groupe de passagers qui saluent dans le lagon" loading="lazy"><figcaption>Tout le monde à l'eau</figcaption></figure>
+        <figure class="shot"><img src="assets/proue-ilet.webp" alt="La proue jaune de Topaze face à un îlet" loading="lazy"><figcaption>Cap sur les îlets</figcaption></figure>
+        <figure class="shot"><img src="assets/bar-flottant.webp" alt="Passagers autour du bar flottant" loading="lazy"><figcaption>Le bar flottant</figcaption></figure>
+        <figure class="shot"><img src="assets/iguane.webp" alt="Iguane sur une branche" loading="lazy"><figcaption>Îlet Chancel</figcaption></figure>
+        <figure class="shot"><img src="assets/hero-topaze.webp" alt="Topaze au mouillage sur l'eau turquoise" loading="lazy"><figcaption>Topaze</figcaption></figure>
+        <figure class="shot"><img src="assets/mangrove.webp" alt="La mangrove vue depuis l'eau" loading="lazy"><figcaption>La mangrove</figcaption></figure>
+        <figure class="shot"><img src="assets/manu-5.webp" alt="Passagers sur le fond blanc" loading="lazy"><figcaption>Sur les fonds blancs</figcaption></figure>
+        <figure class="shot"><img src="assets/topaze-lagon.webp" alt="Topaze sur l'eau calme" loading="lazy"><figcaption>Au mouillage</figcaption></figure>
+      </div>
+      <div class="wrap">
+        <div class="slider__controls">
+          <button type="button" class="slider__btn" data-prev aria-label="Photo précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="slider__btn" data-next aria-label="Photo suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <div class="slider__progress" aria-hidden="true"><i data-progress></i></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="avis" id="avis">
-    <div class="wrap avis__head">
-      <p class="kicker">Ils ont embarqué</p>
-      <h2 class="title">Cartes postales des passagers</h2>
+    <div class="wrap section-head" data-reveal>
+      <p class="label">Avis clients</p>
+      <h2 class="title">Ils ont embarqué avec Manu</h2>
     </div>
     <div class="slider" data-slider>
       <div class="slider__track avis__track" data-track tabindex="0" aria-label="Avis des passagers, faire défiler horizontalement">
-        <figure class="postcard"><blockquote>« Une excursion extraordinaire avec des paysages magnifiques, une ambiance du tonnerre, du rhum et des accras, une connaissance parfaite des sites. »</blockquote><figcaption><b>Gérald</b><span>Google</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« Manu super sympa, souriant, qui connaît son île et on ressent bien son attachement à celle-ci et à son histoire. »</blockquote><figcaption><b>Marie59</b><span>Google</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« Il nous a fait découvrir des coins touristiques sans être collés à d'autres touristes. Il connaît des petits coins locaux. »</blockquote><figcaption><b>Mélanie G.</b><span>TripAdvisor</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« On a profité de la baignoire de Joséphine et du fond blanc, découvert l'île des iguanes, une espèce protégée. »</blockquote><figcaption><b>Dioma D.</b><span>TripAdvisor</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« Super apéro les pieds dans l'eau. Nous habitons en Guadeloupe et nous reviendrons rien que pour refaire. »</blockquote><figcaption><b>Marie-Hélène et Jean-Jacques</b><span>Guadeloupe</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« Sympathique, attentionné, avec une grande connaissance de la faune et la flore. On évite les grands endroits surpeuplés. »</blockquote><figcaption><b>Agnès B.</b><span>Tassin-la-Demi-Lune</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« Son rhum maison était excellent, nous avons pu voir des iguanes dans leur milieu naturel sur l'îlet Chancel. »</blockquote><figcaption><b>Laure</b><span>Google</span></figcaption></figure>
-        <figure class="postcard"><blockquote>« Tout était parfaitement organisé, dans une ambiance conviviale, rassurante et décontractée. »</blockquote><figcaption><b>Famille en sortie</b><span>TripAdvisor</span></figcaption></figure>
+        <figure class="review"><blockquote>« Une excursion extraordinaire avec des paysages magnifiques, une ambiance du tonnerre, du rhum et des accras, une connaissance parfaite des sites. »</blockquote><figcaption><b>Gérald</b><span>Google</span></figcaption></figure>
+        <figure class="review"><blockquote>« Manu super sympa, souriant, qui connaît son île et on ressent bien son attachement à celle-ci et à son histoire. »</blockquote><figcaption><b>Marie59</b><span>Google</span></figcaption></figure>
+        <figure class="review"><blockquote>« Il nous a fait découvrir des coins touristiques sans être collés à d'autres touristes. Il connaît des petits coins locaux. »</blockquote><figcaption><b>Mélanie G.</b><span>TripAdvisor</span></figcaption></figure>
+        <figure class="review"><blockquote>« On a profité de la baignoire de Joséphine et du fond blanc, découvert l'île des iguanes, une espèce protégée. »</blockquote><figcaption><b>Dioma D.</b><span>TripAdvisor</span></figcaption></figure>
+        <figure class="review"><blockquote>« Super apéro les pieds dans l'eau. Nous habitons en Guadeloupe et nous reviendrons rien que pour refaire. »</blockquote><figcaption><b>Marie-Hélène et Jean-Jacques</b><span>Guadeloupe</span></figcaption></figure>
+        <figure class="review"><blockquote>« Sympathique, attentionné, avec une grande connaissance de la faune et la flore. On évite les grands endroits surpeuplés. »</blockquote><figcaption><b>Agnès B.</b><span>Tassin-la-Demi-Lune</span></figcaption></figure>
+        <figure class="review"><blockquote>« Son rhum maison était excellent, nous avons pu voir des iguanes dans leur milieu naturel sur l'îlet Chancel. »</blockquote><figcaption><b>Laure</b><span>Google</span></figcaption></figure>
+        <figure class="review"><blockquote>« Tout était parfaitement organisé, dans une ambiance conviviale, rassurante et décontractée. »</blockquote><figcaption><b>Famille en sortie</b><span>TripAdvisor</span></figcaption></figure>
       </div>
-      <div class="wrap"><div class="slider__controls">
-        <button type="button" class="slider__btn" data-prev aria-label="Avis précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <div class="slider__progress" aria-hidden="true"><i data-progress></i></div>
-        <button type="button" class="slider__btn" data-next aria-label="Avis suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-      </div></div>
+      <div class="wrap">
+        <div class="slider__controls">
+          <button type="button" class="slider__btn" data-prev aria-label="Avis précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="slider__btn" data-next aria-label="Avis suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <div class="slider__progress" aria-hidden="true"><i data-progress></i></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="reserver" id="reserver">
     <div class="wrap reserver__grid">
-      <div class="reserver__copy">
-        <p class="kicker">Réserver</p>
-        <h2 class="title">On t'attend au ponton</h2>
-        <p class="body">Choisis ta formule et ta date, ta demande part sur WhatsApp avec tous les détails. Manu te confirme. Pas de paiement en ligne.</p>
+      <div class="reserver__copy" data-reveal>
+        <p class="label">Réservation</p>
+        <h2 class="title">Réservez votre sortie</h2>
+        <p class="body">Choisissez votre formule et votre date : votre demande est envoyée à Manu sur WhatsApp avec tous les détails. Il vous confirme rapidement. Aucun paiement en ligne.</p>
         <ul class="contact-list">
           <li><span>Téléphone</span><a href="tel:+596696079132">+596 696 07 91 32</a></li>
           <li><span>E-mail</span><a href="mailto:topaze972.manu@gmail.com">topaze972.manu@gmail.com</a></li>
@@ -363,13 +350,11 @@
         <button class="text-link" type="button" data-belle>Ou réserver en ligne via Belle Martinique →</button>
       </div>
 
-      <form class="booking" data-booking novalidate>
-        <div class="booking__tape" aria-hidden="true"></div>
-        <p class="booking__title">Ticket d'embarquement</p>
+      <form class="booking" data-booking novalidate data-reveal>
         <fieldset class="booking__formules">
           <legend>Formule</legend>
-          <label class="chip"><input type="radio" name="formule" value="journee-dej" data-price="85" checked><span>Journée + déjeuner<b>85 €</b></span></label>
-          <label class="chip"><input type="radio" name="formule" value="journee" data-price="70"><span>Journée<b>70 €</b></span></label>
+          <label class="chip"><input type="radio" name="formule" value="journee-dej" data-price="85" checked><span>Journée avec déjeuner<b>85 €</b></span></label>
+          <label class="chip"><input type="radio" name="formule" value="journee" data-price="70"><span>Journée sans déjeuner<b>70 €</b></span></label>
           <label class="chip"><input type="radio" name="formule" value="demi" data-price="60"><span>Demi-journée<b>60 €</b></span></label>
         </fieldset>
 
@@ -408,8 +393,9 @@
             <span class="booking__label">Estimation</span>
             <p class="booking__amount"><span data-total>170</span> €</p>
           </div>
-          <button type="submit" class="btn btn--green">Envoyer sur WhatsApp</button>
+          <button type="submit" class="btn btn--primary">Envoyer ma demande</button>
         </div>
+        <p class="booking__hint">Votre demande s'ouvre dans WhatsApp, prête à être envoyée</p>
         <p class="booking__error" role="alert" data-error></p>
       </form>
     </div>
@@ -420,52 +406,48 @@
       <iframe title="Carte du ponton du Robert" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps?q=14.679323581913328,-60.93745217695152&z=15&output=embed"></iframe>
     </div>
-    <div class="acces__card">
-      <p class="kicker">Point de départ</p>
+    <div class="acces__card" data-reveal>
+      <p class="label">Point de départ</p>
       <h3>Le Ponton du Robert</h3>
       <p class="acces__coord">14°40′46″N · 60°56′15″O</p>
-      <button class="btn btn--green" type="button" data-gps>Ouvrir dans mon GPS</button>
+      <button class="btn btn--primary" type="button" data-gps>Ouvrir dans mon GPS</button>
     </div>
   </section>
 
 </main>
 
 <footer class="footer">
-  <div class="roots roots--full"><i></i><i></i><i></i></div>
-  <div class="wrap">
-    <div class="footer__top">
-      <div class="footer__brand">
-        <img src="assets/logo.webp" alt="Logo Les Balades de Manu" width="104" height="124" loading="lazy">
-        <p>Excursions en bateau aux îlets du François et du Robert, en Martinique</p>
-      </div>
-      <nav class="footer__nav" aria-label="Pied de page">
-        <a href="#excursions">Excursions</a>
-        <a href="#parcours">Le parcours</a>
-        <a href="#capitaine">Manu</a>
-        <a href="#accessibilite">Accessibilité</a>
-        <a href="#reserver">Réserver</a>
-      </nav>
-      <div class="footer__nav">
-        <a href="tel:+596696079132">+596 696 07 91 32</a>
-        <a href="mailto:topaze972.manu@gmail.com">topaze972.manu@gmail.com</a>
-        <a href="https://www.lesbaladesdemanu.fr/mentions-legales">Mentions légales</a>
-        <a href="https://www.lesbaladesdemanu.fr/politique-de-confidentialite/">Confidentialité</a>
-      </div>
+  <div class="wrap footer__top">
+    <div class="footer__brand">
+      <img src="assets/logo.webp" alt="Logo Les Balades de Manu" width="96" height="115" loading="lazy">
+      <p>Excursions en bateau aux îlets du Robert et du François, en Martinique.</p>
     </div>
-    <p class="footer__word" aria-hidden="true" data-footer-word>Les Balades de Manu</p>
-    <div class="footer__bottom">
-      <span>© 2026 Les Balades de Manu</span>
-      <span>Conçu et développé par BM Consulting, aux Antilles</span>
+    <nav class="footer__nav" aria-label="Pied de page">
+      <p class="footer__title">Navigation</p>
+      <a href="#excursions">Excursions</a>
+      <a href="#parcours">Programme</a>
+      <a href="#capitaine">Le capitaine</a>
+      <a href="#accessibilite">Accessibilité</a>
+      <a href="#reserver">Réserver</a>
+    </nav>
+    <div class="footer__nav">
+      <p class="footer__title">Contact</p>
+      <a href="tel:+596696079132">+596 696 07 91 32</a>
+      <a href="mailto:topaze972.manu@gmail.com">topaze972.manu@gmail.com</a>
+      <span>Ponton du Robert, 97231 Le Robert</span>
     </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <span>© 2026 Les Balades de Manu · <a href="https://www.lesbaladesdemanu.fr/mentions-legales">Mentions légales</a> · <a href="https://www.lesbaladesdemanu.fr/politique-de-confidentialite/">Confidentialité</a></span>
+    <span>Conçu et développé par BM Consulting, aux Antilles</span>
   </div>
 </footer>
 
-<a href="tel:+596696079132" class="call" aria-label="Appeler Manu">
+<a href="tel:+596696079132" class="fab fab--call" aria-label="Appeler Manu" data-fab>
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
-  <span>Appelle Manu</span>
+  <span>Appeler</span>
 </a>
-
-<a href="#reserver" class="book-fab" aria-label="Réserver ma sortie" data-book-fab>
+<a href="#reserver" class="fab fab--book" aria-label="Réserver ma sortie" data-book-fab>
   <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
   <span>Réserver</span>
 </a>
@@ -473,6 +455,6 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="main.js?v=7"></script>
+<script src="main.js?v=20"></script>
 </body>
 </html>

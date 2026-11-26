@@ -2,27 +2,30 @@
   const root = document.documentElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
-  if (reduced || !hasGsap) root.classList.add('reduced');
+  const animated = !reduced && hasGsap;
+  if (!animated) root.classList.add('reduced');
 
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
   // Défilement doux
   let lenis = null;
-  if (!reduced && hasGsap && typeof window.Lenis !== 'undefined') {
-    lenis = new Lenis({ duration: 1.15, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true });
+  if (animated && typeof window.Lenis !== 'undefined') {
+    lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
   }
 
+  const nav = $('[data-nav]');
+
   const scrollToHash = (hash) => {
     const target = hash === '#top' ? 0 : $(hash);
     if (target === null) return;
-    const behavior = reduced ? 'auto' : 'smooth';
-    if (lenis) lenis.scrollTo(target, { offset: target === 0 ? 0 : -64, duration: 1.4 });
-    else if (target === 0) window.scrollTo({ top: 0, behavior });
-    else target.scrollIntoView({ behavior });
+    const offset = target === 0 ? 0 : -(nav.offsetHeight - 1);
+    if (lenis) lenis.scrollTo(target, { offset, duration: 1.3 });
+    else if (target === 0) window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    else window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY + offset, behavior: reduced ? 'auto' : 'smooth' });
   };
 
   $$('a[href^="#"]').forEach((a) => {
@@ -41,26 +44,19 @@
   const menuLogo = $('[data-menu-logo]');
   const menuLinks = $$('.menu nav a, .menu__tel');
   const navLogo = $('.nav__brand img');
-  const animated = () => !reduced && hasGsap;
   let menuTl = null;
 
   function openMenu() {
     menu.classList.add('is-open');
     menu.setAttribute('aria-hidden', 'false');
     burger.setAttribute('aria-expanded', 'true');
-    $('[data-nav]').classList.remove('is-solid');
     lenis && lenis.stop();
-    if (!animated()) return;
+    if (!animated) return;
     menuTl && menuTl.kill();
     menuTl = gsap.timeline()
-      .to(navLogo, { scale: 0.4, rotate: -30, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
-      .fromTo(menuLogo,
-        { scale: 0.2, rotate: -200, y: -120, opacity: 0 },
-        { scale: 1, rotate: 0, y: 0, opacity: 1, duration: 1, ease: 'back.out(1.6)' }, 0.15)
-      .to(menuLogo, { rotate: -4, duration: 0.25, ease: 'sine.inOut', yoyo: true, repeat: 1 }, '-=0.15')
-      .fromTo(menuLinks,
-        { y: 36, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out', stagger: 0.06 }, 0.45);
+      .to(navLogo, { opacity: 0, scale: 0.8, duration: 0.25, ease: 'power2.out' }, 0)
+      .fromTo(menuLogo, { opacity: 0, scale: 0.7, rotate: -12, y: 20 }, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 0.8, ease: 'power3.out' }, 0.15)
+      .fromTo(menuLinks, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.05 }, 0.3);
   }
 
   function closeMenu() {
@@ -68,42 +64,35 @@
     burger.setAttribute('aria-expanded', 'false');
     menu.setAttribute('aria-hidden', 'true');
     lenis && lenis.start();
-    const done = () => {
-      menu.classList.remove('is-open');
-      $('[data-nav]').classList.toggle('is-solid', window.scrollY > 24);
-    };
-    if (!animated()) { done(); return; }
+    if (!animated) { menu.classList.remove('is-open'); return; }
     menuTl && menuTl.kill();
-    menuTl = gsap.timeline({ onComplete: done })
-      .to(menuLinks, { y: -20, opacity: 0, duration: 0.25, ease: 'power2.in', stagger: 0.03 }, 0)
-      .to(menuLogo, { scale: 0.2, rotate: 220, y: -160, opacity: 0, duration: 0.55, ease: 'back.in(1.4)' }, 0.05)
-      .fromTo(navLogo, { scale: 0.4, rotate: 40, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.7, ease: 'back.out(2)' }, 0.45);
+    menuTl = gsap.timeline({ onComplete: () => menu.classList.remove('is-open') })
+      .to(menuLinks, { opacity: 0, y: -10, duration: 0.2, ease: 'power2.in', stagger: 0.02 }, 0)
+      .to(menuLogo, { opacity: 0, scale: 0.8, rotate: 8, duration: 0.3, ease: 'power2.in' }, 0.05)
+      .to(navLogo, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out' }, 0.3);
   }
 
   burger.addEventListener('click', () => {
-    menu.classList.contains('is-open') && burger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+    burger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  // Navigation
-  const nav = $('[data-nav]');
-  const call = $('.call');
+  // Navigation et boutons flottants
+  const fabs = $$('[data-fab]');
   const bookFab = $('[data-book-fab]');
   let bookingInView = false;
+  const onScroll = () => {
+    const y = window.scrollY;
+    const past = y > window.innerHeight * 0.7;
+    nav.classList.toggle('is-solid', y > 24);
+    fabs.forEach((f) => f.classList.toggle('is-visible', past));
+    bookFab.classList.toggle('is-visible', past && !bookingInView);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
   new IntersectionObserver((entries) => {
     bookingInView = entries[0].isIntersecting;
     onScroll();
   }, { threshold: 0.15 }).observe(document.getElementById('reserver'));
-  let lastY = 0;
-  const onScroll = () => {
-    const y = window.scrollY;
-    const heroH = window.innerHeight * 0.85;
-    if (!menu.classList.contains('is-open')) nav.classList.toggle('is-solid', y > 24);
-    call.classList.toggle('is-visible', y > heroH);
-    bookFab.classList.toggle('is-visible', y > heroH && !bookingInView);
-    lastY = y;
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   const navLinks = $$('.nav__links a');
@@ -115,151 +104,14 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   ['excursions', 'parcours', 'capitaine', 'accessibilite', 'avis'].forEach((id) => { const el = document.getElementById(id); el && io.observe(el); });
 
-  // Découpage du texte
-  $$('[data-split] .line').forEach((line) => {
-    line.innerHTML = `<span>${line.innerHTML}</span>`;
-  });
-
+  // Texte du capitaine, mot par mot
   const words = $('[data-words]');
-  if (words) {
-    words.innerHTML = words.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(' ');
-  }
+  if (words) words.innerHTML = words.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(' ');
 
-  const footerWord = $('[data-footer-word]');
-  if (footerWord) {
-    footerWord.innerHTML = [...footerWord.textContent].map((c) => c === ' ' ? ' ' : `<span class="ch">${c}</span>`).join('');
-  }
-
-  // Réservation
   initBooking();
   initSliders();
   initGps();
   initBelle();
-
-  if (reduced || !hasGsap) {
-    $$('.w').forEach((w) => w.classList.add('is-on'));
-    $$('[data-count]').forEach((el) => { el.textContent = el.dataset.count; });
-    const loader = $('.loader'); loader && loader.remove();
-    initParcoursStatic();
-    return;
-  }
-
-  gsap.registerPlugin(ScrollTrigger);
-  const ease = 'expo.out';
-
-  // Loader puis entrée du hero
-  const loader = $('.loader');
-  gsap.set('.hero__title .line > span', { yPercent: 110 });
-  gsap.set('.hero [data-reveal-up]', { y: 24, opacity: 0 });
-  gsap.set('[data-hero-media]', { scale: 1.18 });
-  gsap.set('[data-sticker]', { scale: 0, rotate: -40 });
-  gsap.set(loader, { clipPath: 'circle(150% at 50% 50%)' });
-
-  const intro = gsap.timeline({ defaults: { ease } });
-  intro
-    .fromTo('.loader__logo', { scale: 0.4, rotate: -14, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.9, ease: 'back.out(1.8)' })
-    .fromTo('.loader .roots i', { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left', duration: 0.35, stagger: 0.12, ease: 'power2.out' }, '-=0.3')
-    .to(loader, { clipPath: 'circle(0% at 50% 50%)', duration: 0.9, ease: 'expo.inOut' }, '+=0.2')
-    .to('[data-hero-media]', { scale: 1, duration: 1.8 }, '<')
-    .to('.hero__title .line > span', { yPercent: 0, duration: 1.2, stagger: 0.09 }, '-=1.2')
-    .to('.hero [data-reveal-up]', { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 }, '-=0.9')
-    .to('[data-sticker]', { scale: 1, rotate: 12, duration: 0.9, ease: 'back.out(2)' }, '-=0.6')
-    .add(() => loader.remove());
-
-  // Hero au scroll
-  gsap.timeline({
-    scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: true },
-  })
-    .to('[data-hero-media]', { scale: 1.12, yPercent: 12, ease: 'none' }, 0)
-    .to('.hero__content', { y: -80, opacity: 0, ease: 'none' }, 0)
-    .to('[data-sticker]', { y: -160, rotate: 40, ease: 'none' }, 0);
-
-  // Manifeste
-  const ws = $$('.w');
-  ScrollTrigger.create({
-    trigger: '[data-words]',
-    start: 'top 78%',
-    end: 'bottom 42%',
-    scrub: true,
-    onUpdate: (self) => {
-      const n = Math.round(self.progress * ws.length);
-      ws.forEach((w, i) => w.classList.toggle('is-on', i < n));
-    },
-  });
-
-  // Compteurs
-  $$('[data-count]').forEach((el) => {
-    const obj = { v: 0 };
-    gsap.to(obj, {
-      v: +el.dataset.count,
-      duration: 1.6,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-      onUpdate: () => { el.textContent = Math.round(obj.v); },
-    });
-  });
-
-  // Titres en lignes et blocs qui montent
-  $$('.access [data-split]').forEach((title) => {
-    gsap.from($$('.line > span', title), {
-      yPercent: 110, duration: 1.2, ease, stagger: 0.1,
-      scrollTrigger: { trigger: title, start: 'top 80%' },
-    });
-  });
-  $$('main .title').forEach((h) => {
-    gsap.from(h, { y: 40, opacity: 0, duration: 1.1, ease, scrollTrigger: { trigger: h, start: 'top 85%' } });
-  });
-  $$('main [data-reveal-up]').forEach((el) => {
-    if (el.closest('.hero')) return;
-    gsap.from(el, { y: 32, opacity: 0, duration: 0.9, ease, scrollTrigger: { trigger: el, start: 'top 90%' } });
-  });
-
-  // Bandeau qui défile avec le scroll
-  const ticker = $('[data-ticker]');
-  gsap.fromTo(ticker, { xPercent: 0 }, {
-    xPercent: -50, ease: 'none',
-    scrollTrigger: { trigger: '.ticker', start: 'top bottom', end: () => '+=' + window.innerHeight * 2.4, scrub: 0.5 },
-  });
-
-  // Cartes stats
-  gsap.from('.stat', {
-    y: 60, rotate: (i) => (i % 2 ? 8 : -8), opacity: 0, duration: 0.9, ease: 'back.out(1.6)', stagger: 0.08,
-    scrollTrigger: { trigger: '.stats', start: 'top 88%' },
-  });
-
-  // Polaroids : ils tombent sur la page
-  $$('[data-polaroid]').forEach((p) => {
-    gsap.from(p, {
-      y: -60, rotate: '+=14', opacity: 0, duration: 1, ease: 'back.out(1.4)',
-      scrollTrigger: { trigger: p, start: 'top 85%' },
-    });
-  });
-
-  // Cartes des excursions
-  const mmOffers = gsap.matchMedia();
-  mmOffers.add('(min-width: 721px)', () => {
-    gsap.from('.offer', {
-      y: 120, rotate: (i) => [-12, 10, -8][i] || 0, opacity: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.14,
-      scrollTrigger: { trigger: '[data-offers]', start: 'top 82%' },
-      clearProps: 'transform',
-    });
-    gsap.from('.offer__price', { scale: 0, rotate: -90, duration: 0.8, ease: 'back.out(2.2)', stagger: 0.14, delay: 0.5, scrollTrigger: { trigger: '[data-offers]', start: 'top 82%' } });
-  });
-  mmOffers.add('(max-width: 720px)', () => {
-    $$('.offer').forEach((card) => {
-      gsap.from(card, {
-        y: 40, opacity: 0, duration: 0.9, ease: 'power2.out', clearProps: 'transform,opacity',
-        scrollTrigger: { trigger: card, start: 'top 90%' },
-      });
-      gsap.from($('.offer__price', card), {
-        scale: 0.6, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.35, clearProps: 'transform,opacity',
-        scrollTrigger: { trigger: card, start: 'top 90%' },
-      });
-    });
-  });
-  gsap.from('.carte__extra', { scale: 0.6, rotate: -14, opacity: 0, duration: 0.8, ease: 'back.out(2)', scrollTrigger: { trigger: '.carte__extra', start: 'top 92%' } });
-
-  const mm = gsap.matchMedia();
 
   // Parcours
   const route = $('[data-route]');
@@ -268,7 +120,6 @@
   const steps = $$('[data-step]');
   const photos = $$('[data-photos] img');
   const len = route.getTotalLength();
-  // position de chaque escale le long de la route
   const stopAt = [0];
   (() => {
     let from = 0;
@@ -286,8 +137,6 @@
       stopAt.push(best / len);
     });
   })();
-  route.style.strokeDasharray = `${len}`;
-  route.style.strokeDashoffset = `${len}`;
 
   const setActive = (idx) => {
     stops.forEach((s, i) => s.classList.toggle('is-active', i <= idx));
@@ -295,6 +144,7 @@
     photos.forEach((p, i) => p.classList.toggle('is-active', i === idx));
   };
   const drawRoute = (p) => {
+    route.style.strokeDasharray = `${len}`;
     route.style.strokeDashoffset = `${len * (1 - p)}`;
     const pt = route.getPointAtLength(len * p);
     const ahead = route.getPointAtLength(Math.min(len, len * p + 1));
@@ -305,15 +155,65 @@
     if (p > 0.97) idx = steps.length - 1;
     setActive(idx);
   };
+
+  if (!animated) {
+    $$('.w').forEach((w) => w.classList.add('is-on'));
+    const loader = $('.loader'); loader && loader.remove();
+    drawRoute(1);
+    steps.forEach((s) => s.classList.add('is-active'));
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
   drawRoute(0);
 
+  // Entrée
+  const loader = $('.loader');
+  gsap.set('[data-hero-in]', { y: 24, opacity: 0 });
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .fromTo('.loader__logo', { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6 })
+    .to(loader, { opacity: 0, duration: 0.5, ease: 'power2.inOut' }, '+=0.25')
+    .fromTo('[data-hero-media]', { scale: 1.08 }, { scale: 1, duration: 1.8 }, '<')
+    .to('[data-hero-in]', { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 }, '-=1.5')
+    .add(() => loader.remove());
+
+  // Hero au scroll
+  gsap.to('[data-hero-media]', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: true } });
+
+  // Compteurs
+  $$('[data-count]').forEach((el) => {
+    const obj = { v: 0 };
+    gsap.to(obj, {
+      v: +el.dataset.count, duration: 1.4, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      onUpdate: () => { el.textContent = Math.round(obj.v); },
+    });
+  });
+
+  // Texte du capitaine
+  const ws = $$('.w');
+  ScrollTrigger.create({
+    trigger: '[data-words]', start: 'top 80%', end: 'bottom 45%', scrub: true,
+    onUpdate: (self) => {
+      const n = Math.round(self.progress * ws.length);
+      ws.forEach((w, i) => w.classList.toggle('is-on', i < n));
+    },
+  });
+
+  // Apparitions
+  $$('[data-reveal]').forEach((el) => {
+    gsap.from(el, {
+      y: 28, opacity: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+    });
+  });
+
+  // Parcours : épinglé, la route se trace
+  const mm = gsap.matchMedia();
   mm.add('(min-width: 1081px)', () => {
     ScrollTrigger.create({
-      trigger: '[data-parcours]',
-      start: 'top top',
-      end: '+=260%',
-      pin: '.parcours__inner',
-      scrub: 0.8,
+      trigger: '[data-parcours]', start: 'top top', end: '+=240%',
+      pin: '.parcours__inner', scrub: 0.8,
       onUpdate: (self) => drawRoute(self.progress),
     });
   });
@@ -321,46 +221,65 @@
     ScrollTrigger.create({
       trigger: '.parcours__map',
       start: () => 'top ' + (nav.offsetHeight + 12) + 'px',
-      end: '+=220%',
-      pin: true,
-      scrub: 1,
-      invalidateOnRefresh: true,
+      end: '+=220%', pin: true, scrub: 1, invalidateOnRefresh: true,
       onUpdate: (self) => drawRoute(self.progress),
     });
   });
 
-  // Capitaine
-  gsap.fromTo('[data-clip]', { clipPath: 'inset(18% 12% 18% 12% round 20px)' }, {
-    clipPath: 'inset(0% 0% 0% 0% round 20px)', ease: 'none',
-    scrollTrigger: { trigger: '[data-clip]', start: 'top 90%', end: 'center 55%', scrub: true },
-  });
-  gsap.fromTo('[data-clip] img', { yPercent: -8 }, {
-    yPercent: 0, ease: 'none',
-    scrollTrigger: { trigger: '[data-clip]', start: 'top bottom', end: 'bottom top', scrub: true },
-  });
-  gsap.from('.quote__bar', { scaleY: 0, transformOrigin: 'top', duration: 1, ease, scrollTrigger: { trigger: '.quote', start: 'top 85%' } });
-
-  gsap.from('.access__item', { y: 40, opacity: 0, duration: 0.8, ease: 'back.out(1.5)', stagger: 0.1, scrollTrigger: { trigger: '.access__grid', start: 'top 85%' } });
-  gsap.from('.access__title span', { scale: 0.7, rotate: -6, opacity: 0, duration: 0.8, ease: 'back.out(2)', scrollTrigger: { trigger: '.access__title', start: 'top 85%' } });
-  gsap.from('.slogan', { scale: 0.5, rotate: -12, opacity: 0, duration: 0.8, ease: 'back.out(2)', scrollTrigger: { trigger: '.slogan', start: 'top 90%' } });
-  gsap.from('.booking', { y: 80, rotate: 6, opacity: 0, duration: 1, ease, scrollTrigger: { trigger: '.booking', start: 'top 85%' } });
-
-  // Pied de page
-  gsap.from('.footer__word .ch', {
-    yPercent: 100, opacity: 0, duration: 1, ease, stagger: 0.025,
-    scrollTrigger: { trigger: '.footer__word', start: 'top 95%' },
-  });
-
   window.addEventListener('load', () => ScrollTrigger.refresh());
 
-  function initParcoursStatic() {
-    const route = $('[data-route]');
-    const boat = $('[data-boat]');
-    if (!route) return;
-    const pt = route.getPointAtLength(route.getTotalLength() * 0.64);
-    boat.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
-    $$('[data-stop]').forEach((s) => s.classList.add('is-active'));
-    $$('[data-step]').forEach((s) => s.classList.add('is-active'));
+  /* ------------------------------------------------------------------ */
+
+  function initSliders() {
+    $$('[data-slider]').forEach((slider) => {
+      const track = $('[data-track]', slider);
+      const prev = $('[data-prev]', slider);
+      const next = $('[data-next]', slider);
+      const bar = $('[data-progress]', slider);
+      const step = () => {
+        const item = track.children[0];
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return item ? item.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+      };
+      const sync = () => {
+        const max = track.scrollWidth - track.clientWidth;
+        const p = max > 0 ? track.scrollLeft / max : 0;
+        const visible = Math.max(track.clientWidth / track.scrollWidth, 0.1);
+        bar.style.width = visible * 100 + '%';
+        bar.style.transform = `translateX(${p * (1 / visible - 1) * 100}%)`;
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= max - 2;
+      };
+      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' }));
+      next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: reduced ? 'auto' : 'smooth' }));
+      track.addEventListener('scroll', sync, { passive: true });
+      window.addEventListener('resize', sync);
+      track.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
+      });
+
+      let down = false, startX = 0, startLeft = 0, moved = false;
+      track.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+        track.classList.add('is-dragging');
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!down) return;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 4) moved = true;
+        track.scrollLeft = startLeft - dx;
+      });
+      window.addEventListener('pointerup', () => {
+        if (!down) return;
+        down = false;
+        track.classList.remove('is-dragging');
+      });
+      track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+      track.addEventListener('dragstart', (e) => e.preventDefault());
+      sync();
+    });
   }
 
   function initBooking() {
@@ -383,12 +302,11 @@
       const out = $('output', c);
       const min = +c.dataset.min, max = +c.dataset.max;
       counts[key] = +out.textContent;
-      const sync = () => {
+      c._sync = () => {
         out.textContent = counts[key];
         $('[data-dec]', c).disabled = counts[key] <= min;
         $('[data-inc]', c).disabled = counts[key] >= max || (key !== 'fauteuils' && counts.adultes + (counts.petits || 0) >= 12);
       };
-      c._sync = sync;
       $('[data-dec]', c).addEventListener('click', () => { counts[key] = Math.max(min, counts[key] - 1); update(); });
       $('[data-inc]', c).addEventListener('click', () => { counts[key] = Math.min(max, counts[key] + 1); update(); });
     });
@@ -402,9 +320,9 @@
       demiOnly.hidden = formule().value !== 'demi';
       pmrCount.hidden = !pmr.checked;
       const target = price();
-      if (hasGsap && !reduced) {
+      if (animated) {
         const o = { v: shown };
-        gsap.to(o, { v: target, duration: 0.5, ease: 'power3.out', onUpdate: () => { totalEl.textContent = Math.round(o.v); } });
+        gsap.to(o, { v: target, duration: 0.45, ease: 'power2.out', onUpdate: () => { totalEl.textContent = Math.round(o.v); } });
       } else {
         totalEl.textContent = target;
       }
@@ -452,66 +370,12 @@
     update();
   }
 
-  function initSliders() {
-    $$('[data-slider]').forEach((slider) => {
-      const track = $('[data-track]', slider);
-      const prev = $('[data-prev]', slider);
-      const next = $('[data-next]', slider);
-      const bar = $('[data-progress]', slider);
-      const step = () => {
-        const item = track.children[0];
-        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-        return item ? item.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
-      };
-      const sync = () => {
-        const max = track.scrollWidth - track.clientWidth;
-        const p = max > 0 ? track.scrollLeft / max : 0;
-        const visible = track.clientWidth / track.scrollWidth;
-        bar.style.width = Math.max(visible, 0.08) * 100 + '%';
-        bar.style.transform = `translateX(${p * (1 / Math.max(visible, 0.08) - 1) * 100}%)`;
-        prev.disabled = track.scrollLeft <= 2;
-        next.disabled = track.scrollLeft >= max - 2;
-      };
-      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' }));
-      next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: reduced ? 'auto' : 'smooth' }));
-      track.addEventListener('scroll', sync, { passive: true });
-      window.addEventListener('resize', sync);
-      track.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
-        if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
-      });
-
-      // Glisser à la souris
-      let down = false, startX = 0, startLeft = 0, moved = false;
-      track.addEventListener('pointerdown', (e) => {
-        if (e.pointerType !== 'mouse') return;
-        down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
-        track.classList.add('is-dragging');
-      });
-      window.addEventListener('pointermove', (e) => {
-        if (!down) return;
-        const dx = e.clientX - startX;
-        if (Math.abs(dx) > 4) moved = true;
-        track.scrollLeft = startLeft - dx;
-      });
-      window.addEventListener('pointerup', () => {
-        if (!down) return;
-        down = false;
-        track.classList.remove('is-dragging');
-      });
-      track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-      track.addEventListener('dragstart', (e) => e.preventDefault());
-      sync();
-    });
-  }
-
   function initGps() {
     const btn = $('[data-gps]');
     if (!btn) return;
     btn.addEventListener('click', () => {
       const lat = 14.679323581913328, lng = -60.93745217695152;
-      const ua = navigator.userAgent || '';
-      if (/iPad|iPhone|iPod/.test(ua)) window.location.href = `maps://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`;
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent || '')) window.location.href = `maps://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`;
       else window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank', 'noopener');
     });
   }
